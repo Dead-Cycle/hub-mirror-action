@@ -6,9 +6,18 @@ if [[ "$DEBUG" == "true" ]]; then
   set -x
 fi
 
+# 判断 INPUT_CLONE_STYLE 是否等于 "ssh"，如果不等于则退出
+if [[ "$INPUT_CLONE_STYLE" != "ssh" ]]; then
+  echo "INPUT_CLONE_STYLE is only support 'ssh'. Exiting script."
+  exit 1
+fi
+
 mkdir -p /root/.ssh
-echo "${INPUT_DST_KEY}" > /root/.ssh/id_rsa
-chmod 600 /root/.ssh/id_rsa
+echo "${INPUT_SRC_KEY}" > /root/.ssh/src_rsa
+chmod 600 /root/.ssh/src_rsa
+
+echo "${INPUT_DST_KEY}" > /root/.ssh/dst_rsa
+chmod 600 /root/.ssh/dst_rsa
 
 python3 -m venv /hub-mirror/venv
 source /hub-mirror/venv/bin/activate

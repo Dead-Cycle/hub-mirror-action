@@ -14,6 +14,9 @@ inputs:
   dst:
     description: "Destination name. Such as `gitee/kunpengcompute`."
     required: true
+  src_key:
+    description: "The private SSH key which is used to to pull code in source hub."
+    required: true
   src:
     description: "Source name. Such as `github/kunpengcompute`."
     required: true
@@ -62,6 +65,7 @@ runs:
   args:
     - ${{ inputs.dst_key }}
     - ${{ inputs.dst_token }}
+    - ${{ inputs.src_key }}
     - ${{ inputs.src }}
     - ${{ inputs.dst }}
     - ${{ inputs.account_type }}
