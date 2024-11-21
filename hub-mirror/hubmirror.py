@@ -24,7 +24,7 @@ class HubMirror(object):
         inputs = action['inputs']
 
         for key in inputs:
-            if key in ['dst_key']:
+            if key in ['dst_key', 'src_key']:
                 continue
             input_args = inputs[key]
             dft = input_args.get('default', '')
